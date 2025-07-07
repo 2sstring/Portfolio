@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>은행 웹서버</title>
+</head>
+<body>
+    {% if mode == 'login' %}
+        <h2>로그인</h2>
+        {% if message %}
+            <p style="color: red;">{{ message }}</p>
+        {% endif %}
+        <form method="post">
+            <label>아이디: <input type="text" name="username"></label><br><br>
+            <label>비밀번호: <input type="password" name="password"></label><br><br>
+            <input type="submit" value="로그인">
+        </form>
+
+    {% elif mode == 'dashboard' %}
+        <h2>{{ display_name }}님의 계좌</h2>
+        <p>현재 잔액: <strong>{{ balance }}원</strong></p>
+
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+
+        <form method="post">
+            <label>금액: <input type="number" name="amount"></label><br><br>
+            <button type="submit" name="action" value="입금">입금</button>
+            <button type="submit" name="action" value="출금">출금</button>
+        </form>
+
+        <br>
+        <a href="{{ url_for('logout') }}">로그아웃</a>
+    {% endif %}
+</body>
+</html>
