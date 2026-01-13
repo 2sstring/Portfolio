@@ -86,3 +86,4 @@ ros2 run pv_edge pv_simulator
 
 ---
 
+> ⚠️ `SolarData_Sample_60min.csv`는 공개할 수 없는 데이터이며, 올린 파일은 빈파일입니다.
