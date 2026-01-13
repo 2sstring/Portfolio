@@ -1,4 +1,4 @@
-# pv_ws_pub - PV Data Publisher (Simulator)
+# PV Data Publisher (Simulator)
 
 이 워크스페이스는 **태양광 발전소 센서 데이터를 시뮬레이션하여 ROS2 토픽 `/pv/sample` 으로 Publish** 하는 역할을 합니다.  
 AI 예측 노드(PVForecastNode)의 입력 데이터 소스로 사용됩니다.
@@ -87,3 +87,4 @@ ros2 run pv_edge pv_simulator
 ---
 
 > ⚠️ `SolarData_Sample_60min.csv`는 공개할 수 없는 데이터이며, 올린 파일은 빈파일입니다.
+
