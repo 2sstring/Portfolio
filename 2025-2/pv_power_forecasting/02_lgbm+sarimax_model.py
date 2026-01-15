@@ -34,10 +34,10 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 # 0. 설정
 # ======================
 
-DATA_PATH = r"C:\Uni_Project\SolarData_60min_for_train.csv"
-OUT_CSV  = r"C:\Uni_Project\SolarData_60min_for_train_lgbm_sarimax.csv"
+DATA_PATH = r"SolarData_60min_for_train.csv"
+OUT_CSV  = r"SolarData_60min_for_train_lgbm_sarimax.csv"
 
-MODEL_DIR = r"C:\Uni_Project\models"
+MODEL_DIR = r"models"
 TOLERANCE = 0.08
 TARGET_COL = "Target"
 TIME_COL = "Datetime"
@@ -281,3 +281,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
