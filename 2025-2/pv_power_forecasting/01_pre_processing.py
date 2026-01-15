@@ -16,8 +16,8 @@ import pvlib
 # 설정 (사용자 수정 구간)
 # ==========================
 
-CSV_PATH = r"C:\Uni_Project\SolarData_merged.csv"
-OUTPUT_CSV_PATH = r"C:\Uni_Project\SolarData_60min_for_train.csv"
+CSV_PATH = r"SolarData_merged.csv"
+OUTPUT_CSV_PATH = r"SolarData_60min_for_train.csv"
 
 # 발전소 위치 (예시: 대전 근처 → 필요시 수정)
 LATITUDE = 36.969965    # 위도 (deg, 북위 +)
@@ -278,3 +278,4 @@ if __name__ == "__main__":
     os.makedirs(os.path.dirname(OUTPUT_CSV_PATH), exist_ok=True)
     df_feat.to_csv(OUTPUT_CSV_PATH, index=False, encoding="utf-8-sig")
     print("저장 완료:", OUTPUT_CSV_PATH)
+
