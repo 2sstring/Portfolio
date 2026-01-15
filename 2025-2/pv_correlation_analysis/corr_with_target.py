@@ -1,11 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Nov 23 23:42:34 2025
-
-@author: bigbell
-"""
-
-# -*- coding: utf-8 -*-
 import os
 import numpy as np
 import pandas as pd
@@ -15,7 +8,7 @@ import seaborn as sns
 # =====================================
 # 1. 전처리된 데이터 불러오기
 # =====================================
-DATA_DIR = r"C:\Uni_Project\SolarDat\min"
+DATA_DIR = r"C:\pv_sys"  # 파일 위치에 맞게 수정
 DATA_PATH = os.path.join(DATA_DIR, "SolarData_60min_for_train.csv")
 
 df = pd.read_csv(DATA_PATH)
@@ -76,3 +69,4 @@ if "Target" in numeric_cols:
 
 else:
     print("경고: 'Target' 컬럼을 찾지 못했습니다.")
+
