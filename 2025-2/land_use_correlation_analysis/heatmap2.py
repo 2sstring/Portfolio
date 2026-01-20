@@ -20,7 +20,7 @@ plt.rcParams['font.family'] = 'Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] = False
 
 # ===== 1) 데이터 로드 =====
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025_detail.csv")
 
 df = pd.read_csv(detail_csv_path, encoding="cp949")
@@ -108,3 +108,4 @@ outfile_ratio = os.path.join(base_dir, "corr_heatmap_ratio_2015_2025.png")
 draw_corr_heatmap(corr_ratio, title_ratio, outfile_ratio)
 
 print("\n=== 2015~2025년 전체 기준 상관 히트맵 생성 완료 ===")
+
