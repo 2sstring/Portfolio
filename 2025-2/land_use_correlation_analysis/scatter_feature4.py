@@ -11,7 +11,7 @@ plt.rcParams['font.family'] = 'Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] = False
 
 # ===== 1) 데이터 로드 =====
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025_detail.csv")
 
 df = pd.read_csv(detail_csv_path, encoding="cp949")
@@ -123,4 +123,5 @@ for x_col, y_col in itertools.combinations(var_cols, 2):
     print("저장:", outfile)
 
 print("\n=== 2025년 기준 변수쌍별 상관 산점도(Pearson) 생성 완료 ===")
+
 
