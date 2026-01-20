@@ -25,7 +25,7 @@ plt.rcParams['font.family'] = 'Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] = False
 
 # ===== 0) 경로 설정 =====
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025_detail.csv")
 
 # 🔹 추가: 인구 & 도로율 엑셀 경로
@@ -260,4 +260,5 @@ plt.close()
 print("Heatmap 이미지 저장:", corr_img)
 
 print("\n=== 도로율 + 인구밀도 상관분석 완료 ===")
+
 
