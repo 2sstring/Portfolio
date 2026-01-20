@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 
 # === 0) 데이터 폴더 설정 ===
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 os.chdir(base_dir)
 
 # === 1) 2015~2025 CSV 파일 리스트 ===
@@ -120,3 +120,4 @@ total_all.to_csv(total_csv_path,  index=False, encoding="cp949")
 print("\n저장 완료:")
 print(" - 연도·지역별 상세:", detail_csv_path)
 print(" - 연도별 충청북도 합계:", total_csv_path)
+
