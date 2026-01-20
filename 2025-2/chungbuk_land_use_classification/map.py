@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 충북 토지이용 유형을 지도에 표시 (2025년 기준)
- - 입력 1: chungbuk_landuse_clusters_pca_kmeans_2015_2025_with_road.csv
+ - 입력 1: clusters_feature6_k3.csv
     * year, 토지소재명, 유형(도시/산업형, 균형형, 농업/산림형)
  - 입력 2: BND_SIGUNGU_PG.shp
     * 컬럼: BASE_DATE, SIGUNGU_CD, SIGUNGU_NM, geometry
@@ -14,10 +14,10 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 
 # ===== 경로 설정 =====
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 
 # (1) 클러스터 결과 CSV
-cluster_csv_path = os.path.join(base_dir, "chungbuk_landuse_clusters_pca_kmeans_2015_2025_with_road.csv")
+cluster_csv_path = os.path.join(base_dir, "clusters_feature6_k3.csv")
 
 # (2) 시군구 경계 Shapefile
 shp_path = os.path.join(base_dir, "BND_SIGUNGU_PG.shp")
@@ -133,10 +133,11 @@ legend_handles = [
 ]
 ax.legend(handles=legend_handles, title="유형", loc="lower left")
 
-out_map = os.path.join(base_dir, "chungbuk_landuse_type_map_2025_cb_only.png")
+out_map = os.path.join(base_dir, "chungbuk_landuse_type_map_2025.png")
 plt.tight_layout()
 plt.savefig(out_map, dpi=200, bbox_inches="tight")
 plt.close()
 
 print("충북만 확대된 지도 이미지 저장:", out_map)
+
 
