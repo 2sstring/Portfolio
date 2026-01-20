@@ -1,11 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Nov 27 23:37:08 2025
-
-@author: bigbell
-"""
-
-# -*- coding: utf-8 -*-
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -18,7 +11,7 @@ plt.rcParams['axes.unicode_minus'] = False
 POP_COLOR = "#EA9358"   # 주황 계열
 
 # ===== 1) 데이터 로드 =====
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025_detail.csv")
 pop_xlsx_path   = os.path.join(base_dir, "chungbuk_population.xlsx")
 
@@ -146,3 +139,4 @@ plt.close()
 print("저장:", outfile_total)
 
 print("\n=== 지역별 + 충북 전체 인구밀도 변화 그래프 생성 완료 ===")
+
