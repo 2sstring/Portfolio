@@ -1,11 +1,3 @@
-
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Nov 29 01:04:15 2025
-
-@author: bigbell
-"""
-
 # -*- coding: utf-8 -*-
 """
 충북 토지이용 군집 분석 (KMeans + PCA + Softmax 확률)
@@ -13,7 +5,7 @@ Created on Sat Nov 29 01:04:15 2025
  - 특징: 임야/농경지/대지/공장용지 비율 (4차원)
  - 군집: KMeans(k=2)
  - 시각화: PCA(2D) + 클러스터 색상
- - 추가: 각 유형(도시/산업형, 농업/산림형)에 대한 softmax 확률 계산
+ - 각 유형(도시/산업형, 농업/산림형)에 대한 softmax 확률 계산
 """
 
 import os
@@ -209,3 +201,4 @@ df[save_cols].to_csv(out_csv, index=False, encoding="cp949")
 print("군집 + Softmax 결과 CSV 저장:", out_csv)
 
 print("\n=== 군집 분석(KMeans+PCA+Softmax, 2015~2025 전체, k=2) 완료 ===")
+
