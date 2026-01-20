@@ -25,8 +25,8 @@ plt.rcParams['axes.unicode_minus'] = False
 os.environ["OMP_NUM_THREADS"] = "1"
 
 # ===== 1) 데이터 로드 =====
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
-detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025_detail.csv")
+base_dir = r"data"
+detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025.csv")
 
 df = pd.read_csv(detail_csv_path, encoding="cp949")
 
@@ -179,7 +179,7 @@ plt.title("충북 토지이용 군집 (KMeans k=2, 2015~2025년, 임야/농경�
 plt.legend(title="지역 유형")
 plt.tight_layout()
 
-pca_outfile = os.path.join(base_dir, "cluster_pca_2015_2025_k2.png")
+pca_outfile = os.path.join(base_dir, "clusters_feature4_k2.png")
 plt.savefig(pca_outfile, dpi=200)
 plt.close()
 
@@ -188,7 +188,7 @@ print("\nPCA 시각화 이미지 저장:", pca_outfile)
 # =====================================================================
 # 6) 결과 CSV 저장 (모든 연도 + softmax 확률)
 # =====================================================================
-out_csv = os.path.join(base_dir, "chungbuk_clusters_2015_2025_softmax_k2.csv")
+out_csv = os.path.join(base_dir, "clusters_feature4_k2_softmax.csv")
 save_cols = [
     col_year, col_region,
     col_forest, col_agri, col_dae, col_factory,
@@ -201,4 +201,5 @@ df[save_cols].to_csv(out_csv, index=False, encoding="cp949")
 print("군집 + Softmax 결과 CSV 저장:", out_csv)
 
 print("\n=== 군집 분석(KMeans+PCA+Softmax, 2015~2025 전체, k=2) 완료 ===")
+
 
