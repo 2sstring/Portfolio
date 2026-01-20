@@ -1,11 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Nov 27 23:56:03 2025
-
-@author: bigbell
-"""
-
-# -*- coding: utf-8 -*-
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -23,7 +16,7 @@ color_map = {
 }
 
 # ===== 1) 데이터 로드 =====
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025_detail.csv")
 
 df = pd.read_csv(detail_csv_path, encoding="cp949")
@@ -128,3 +121,4 @@ plt.close()
 print("저장:", outfile_total)
 
 print("\n=== 지역별 + 충북 전체 토지 이용 '면적' 변화 그래프 생성 완료 ===")
+
