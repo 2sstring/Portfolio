@@ -1,28 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Nov 29 01:16:57 2025
-
-@author: bigbell
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Nov 28 03:29:57 2025
-
-@author: bigbell
-"""
-
-# -*- coding: utf-8 -*-
-"""
 충청북도 토지이용 유형 분류 (PCA + KMeans, 2015~2025)
- - 입력 1: chungbuk_landuse_composition_2015_2025_detail.csv
+ - 입력 1: chungbuk_landuse_composition_2015_2025.csv
  - 입력 2: chungbuk_population.xlsx
  - 입력 3: chungbuk_road_ratio_2015_2025.xlsx
 
  - 특징(Feature):
-    1) 임야/농경지/대지/공장용지 비율 (4개 합 = 1)  ←★ KMeans는 이 4개만 사용
-    2) 인구밀도 (인구 / 전체면적[km²])              ← 해석용
-    3) 도로율 (도로면적 / 전체면적)                 ← 해석용
+    1) 임야/농경지/대지/공장용지 비율 (4개 합 = 1)
+    2) 인구밀도 (인구 / 전체면적[km²])
+    3) 도로율 (도로면적 / 전체면적)
 
  - 군집 수: KMeans(k=2) → 도시/산업형 vs 농업/산림형
 """
@@ -41,7 +27,7 @@ plt.rcParams['font.family'] = 'Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] = False
 
 # ===== 1) 경로 및 파일 설정 =====
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025_detail.csv")
 pop_xlsx_path   = os.path.join(base_dir, "chungbuk_population.xlsx")
 road_xlsx_path  = os.path.join(base_dir, "chungbuk_road_ratio_2015_2025.xlsx")
@@ -293,3 +279,4 @@ plt.close()
 print("전체 연도 PCA 클러스터 그림 저장:", out_png_all)
 
 print("\n=== 전체 작업 완료 (임야/농경지/대지/공장 비율 기반 KMeans k=2 + Softmax 버전) ===")
+
