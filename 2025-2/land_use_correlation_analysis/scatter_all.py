@@ -1,11 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Nov 25 22:07:27 2025
-
-@author: bigbell
-"""
-
-# -*- coding: utf-8 -*-
 import os
 import itertools
 import numpy as np
@@ -130,3 +123,4 @@ for x_col, y_col in itertools.combinations(var_cols, 2):
     print("저장:", outfile)
 
 print("\n=== 2025년 기준 변수쌍별 상관 산점도(Pearson) 생성 완료 ===")
+
