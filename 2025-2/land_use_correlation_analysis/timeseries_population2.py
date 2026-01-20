@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Nov 28 00:29:19 2025
-
-@author: bigbell
-"""
-
-# -*- coding: utf-8 -*-
-"""
 충청북도 시군구별 / 전체 인구수 변화 (2015~2025)
  - y축: 인구수(명)
 """
@@ -23,7 +16,7 @@ plt.rcParams['axes.unicode_minus'] = False
 POP_COLOR = "#EA9358"   # 주황 계열
 
 # ===== 1) 데이터 로드 =====
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025_detail.csv")
 pop_xlsx_path   = os.path.join(base_dir, "chungbuk_population.xlsx")
 
@@ -142,3 +135,4 @@ plt.close()
 print("저장:", outfile_total)
 
 print("\n=== 지역별 + 충북 전체 인구수 변화 그래프 생성 완료 ===")
+
