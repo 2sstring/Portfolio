@@ -121,3 +121,4 @@ print("\n저장 완료:")
 print(" - 연도·지역별 상세:", detail_csv_path)
 print(" - 연도별 충청북도 합계:", total_csv_path)
 
+
