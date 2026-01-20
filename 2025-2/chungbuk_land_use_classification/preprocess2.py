@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Nov 27 17:09:59 2025
-
-@author: bigbell
-"""
-
-# -*- coding: utf-8 -*-
-"""
 충북 시군구별 도로율(도로면적/전체면적) 계산 후 엑셀로 저장
 
 입력: chungbuk_data_*.csv (연도별 원시 토지이용 데이터)
@@ -21,7 +14,7 @@ import numpy as np
 import pandas as pd
 
 # === 0) 데이터 폴더 설정 ===
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 os.chdir(base_dir)
 
 # === 1) 2015~2025 CSV 파일 리스트 ===
@@ -128,3 +121,4 @@ with pd.ExcelWriter(out_xlsx_path, engine="openpyxl") as writer:
 print("\n저장 완료:", out_xlsx_path)
 print(" - sheet 'detail': 연도·시군구별 도로율")
 print(" - sheet 'total' : 연도별 충청북도 합계 도로율")
+
