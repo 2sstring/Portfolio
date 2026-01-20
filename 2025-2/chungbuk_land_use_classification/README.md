@@ -2,7 +2,7 @@
 
 `chungbuk_data_*.csv`와 `chungbuk_population.csv`는 컬럼 구조만 유지하고 실제 데이터는 제거한 파일입니다.
 
----
+
 
 원본 데이터 출처
 
@@ -14,7 +14,7 @@
 - **충청북도 주민등록인구통계** (2015.12 ~ 2025.09)  
   https://www.chungbuk.go.kr/stat/selectBbsNttList.do?bbsNo=181&key=1406
 
----
+
 
 사용 방법 안내
 
