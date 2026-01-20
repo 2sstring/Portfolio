@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 충청북도 토지이용 유형 분류 (PCA + KMeans, 2015~2025)
- - 입력 1: chungbuk_landuse_composition_2015_2025.csv
+ - 입력 1: chungbuk_landuse_composition_2015_2025_detail.csv
  - 입력 2: chungbuk_population.xlsx
  - 입력 3: chungbuk_road_ratio_2015_2025.xlsx
 
@@ -226,7 +226,7 @@ print(df_2025[[
 # ===== 13) 결과 CSV 저장 =====
 out_csv_path = os.path.join(
     base_dir,
-    "chungbuk_landuse_clusters_kmeans_2015_2025_ratio_only_softmax_k2.csv"
+    "clusters_feature6_k2_softmax.csv"
 )
 df.to_csv(out_csv_path, index=False, encoding="cp949")
 print("\n저장 완료: ", out_csv_path)
@@ -271,7 +271,7 @@ plt.tight_layout()
 
 out_png_all = os.path.join(
     base_dir,
-    "pca_kmeans_clusters_2015_2025_ratio_only_allyears_with_2025_labels_k2.png"
+    "clusters_feature6_k2.png"
 )
 plt.savefig(out_png_all, dpi=200)
 plt.close()
@@ -279,4 +279,5 @@ plt.close()
 print("전체 연도 PCA 클러스터 그림 저장:", out_png_all)
 
 print("\n=== 전체 작업 완료 (임야/농경지/대지/공장 비율 기반 KMeans k=2 + Softmax 버전) ===")
+
 
