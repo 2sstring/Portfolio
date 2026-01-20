@@ -201,7 +201,7 @@ print("\nPCA 시각화 이미지 저장:", pca_outfile)
 # =====================================================================
 # 6) 결과 CSV 저장 (모든 연도 + softmax 확률)
 # =====================================================================
-out_csv = os.path.join(base_dir, "clusters_feature4_k3.csv")
+out_csv = os.path.join(base_dir, "clusters_feature4_k3_softmax.csv")
 save_cols = [
     col_year, col_region,
     col_forest, col_agri, col_dae, col_factory,
@@ -225,5 +225,6 @@ print(loadings)
 
 print("\n=== 각 PC가 설명하는 분산 비율 ===")
 print(pd.Series(pca.explained_variance_ratio_, index=["PC1", "PC2"]))
+
 
 
