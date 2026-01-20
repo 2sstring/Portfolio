@@ -6,7 +6,7 @@
 - 특징:
     · 모든 '... 면적(㎡)' 비율
     · 인구밀도(pop_density)
-- 군집: KMeans(k=3)  ※ 전체 연도 통합 1회
+- 군집: KMeans(k=3)
 - 시각화: PCA(2D)
 - 추가: Softmax 기반 유형별 확률
 """
@@ -29,7 +29,7 @@ plt.rcParams["font.family"] = "Malgun Gothic"
 plt.rcParams["axes.unicode_minus"] = False
 os.environ["OMP_NUM_THREADS"] = "1"
 
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 landuse_pattern = os.path.join(base_dir, "chungbuk_data_*.csv")
 pop_xlsx_path = os.path.join(base_dir, "chungbuk_population.xlsx")
 
@@ -217,7 +217,7 @@ plt.legend()
 plt.title(f"충북 토지이용 군집 ({df[col_year].min()}~{latest})")
 plt.tight_layout()
 
-plt.savefig(os.path.join(base_dir, "cluster_pca_all_area_ratio_pop.png"), dpi=200)
+plt.savefig(os.path.join(base_dir, "clusters_featureall_k3.png"), dpi=200)
 plt.close()
 
 # ===== 저장 전 year 컬럼 존재 확인/강제 =====
@@ -232,8 +232,9 @@ df = df[[col_year] + [c for c in df.columns if c != col_year]]
 # =========================================================
 # 11. 결과 저장
 # =========================================================
-out_csv = os.path.join(base_dir, "chungbuk_clusters_all_area_ratio_softmax_pop.csv")
+out_csv = os.path.join(base_dir, "clusters_featureall_k3_softmax.csv")
 df.to_csv(out_csv, index=False, encoding="cp949")
 
 print("✅ 분석 완료")
 print("📁 결과 CSV:", out_csv)
+
