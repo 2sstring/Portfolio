@@ -5,7 +5,7 @@
  - 특징: 임야/농경지/대지/공장용지 비율 (4차원)
  - 군집: KMeans(k=3)
  - 시각화: PCA(2D) + 클러스터 색상
- - 추가: 각 유형(도시/산업형, 농업/산림형, 균형형)에 대한 softmax 확률 계산
+ - 각 유형(도시/산업형, 농업/산림형, 균형형)에 대한 softmax 확률 계산
 """
 
 import os
@@ -25,8 +25,8 @@ plt.rcParams['axes.unicode_minus'] = False
 os.environ["OMP_NUM_THREADS"] = "1"
 
 # ===== 1) 데이터 로드 =====
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
-detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025_detail.csv")
+base_dir = r"data"
+detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025.csv")
 
 df = pd.read_csv(detail_csv_path, encoding="cp949")
 
@@ -192,7 +192,7 @@ plt.title("충북 토지이용 군집 (KMeans, 2015~2025년, 임야/농경지/�
 plt.legend(title="지역 유형")
 plt.tight_layout()
 
-pca_outfile = os.path.join(base_dir, "cluster_pca_2015_2025.png")
+pca_outfile = os.path.join(base_dir, "clusters_feature4_k3.png")
 plt.savefig(pca_outfile, dpi=200)
 plt.close()
 
@@ -201,7 +201,7 @@ print("\nPCA 시각화 이미지 저장:", pca_outfile)
 # =====================================================================
 # 6) 결과 CSV 저장 (모든 연도 + softmax 확률)
 # =====================================================================
-out_csv = os.path.join(base_dir, "chungbuk_clusters_2015_2025_softmax.csv")
+out_csv = os.path.join(base_dir, "clusters_feature4_k3.csv")
 save_cols = [
     col_year, col_region,
     col_forest, col_agri, col_dae, col_factory,
@@ -225,4 +225,5 @@ print(loadings)
 
 print("\n=== 각 PC가 설명하는 분산 비율 ===")
 print(pd.Series(pca.explained_variance_ratio_, index=["PC1", "PC2"]))
+
 
