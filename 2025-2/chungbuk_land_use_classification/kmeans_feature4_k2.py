@@ -26,7 +26,7 @@ os.environ["OMP_NUM_THREADS"] = "1"
 
 # ===== 1) 데이터 로드 =====
 base_dir = r"data"
-detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025.csv")
+detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025_detail.csv")
 
 df = pd.read_csv(detail_csv_path, encoding="cp949")
 
@@ -201,5 +201,6 @@ df[save_cols].to_csv(out_csv, index=False, encoding="cp949")
 print("군집 + Softmax 결과 CSV 저장:", out_csv)
 
 print("\n=== 군집 분석(KMeans+PCA+Softmax, 2015~2025 전체, k=2) 완료 ===")
+
 
 
