@@ -1,4 +1,4 @@
-⚠️ `chungbuk_data_*.csv`와 `chungbuk_population.csv`는 공개할 수 없는 데이터이며, 올린 파일은 데이터가 없는 파일입니다.
+⚠️ `chungbuk_data_*.csv`와 `chungbuk_population.csv`는 **컬럼 구조만 유지하고 실제 데이터는 제거한 템플릿 파일**입니다.
 
 📌 원본 데이터 출처
 
