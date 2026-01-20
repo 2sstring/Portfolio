@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Nov 25 23:05:43 2025
-
-@author: bigbell
-"""
-
-# -*- coding: utf-8 -*-
-"""
 충북 토지이용 기초 통계 분석
  - 데이터: chungbuk_landuse_composition_2015_2025_detail.csv
  - 1) 용도별 평균/중앙값 (면적 + 비율)
@@ -25,7 +18,7 @@ plt.rcParams['font.family'] = 'Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] = False
 
 # ===== 0) 경로 설정 =====
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025_detail.csv")
 
 df = pd.read_csv(detail_csv_path, encoding="cp949")
@@ -195,3 +188,4 @@ plt.close()
 print("비율 박스플롯 이미지 저장:", box_path)
 
 print("\n=== 기초 통계 분석 완료 ===")
+
