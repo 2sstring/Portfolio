@@ -1,11 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Nov 28 02:51:16 2025
-
-@author: bigbell
-"""
-
-# -*- coding: utf-8 -*-
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -24,7 +17,7 @@ color_map = {
 ROAD_COLOR = "#589AEA"          # 도로율: 파랑 계열
 
 # ===== 1) 데이터 로드 =====
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025_detail.csv")
 road_xlsx_path  = os.path.join(base_dir, "chungbuk_road_ratio_2015_2025.xlsx")
 
@@ -216,3 +209,4 @@ plt.close()
 print("저장:", outfile_total)
 
 print("\n=== 지역별 + 충북전체 토지 이용 비율 + 도로율 변화 그래프 생성 완료 ===")
+
