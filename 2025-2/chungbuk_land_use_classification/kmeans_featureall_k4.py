@@ -26,7 +26,7 @@ plt.rcParams['axes.unicode_minus'] = False
 os.environ["OMP_NUM_THREADS"] = "1"
 
 # ===== 0) 경로 설정 =====
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 
 # 연도별 토지이용 원본 CSV
 landuse_pattern = os.path.join(base_dir, "chungbuk_data_*.csv")
@@ -306,7 +306,7 @@ plt.title(
 plt.legend(title="지역 유형")
 plt.tight_layout()
 
-pca_outfile = os.path.join(base_dir, "cluster_pca_all_area_ratio_pop_k4.png")
+pca_outfile = os.path.join(base_dir, "clusters_featureall_k4.png")
 plt.savefig(pca_outfile, dpi=200)
 plt.close()
 
@@ -315,7 +315,7 @@ print("\nPCA 시각화 이미지 저장:", pca_outfile)
 # =====================================================================
 # 9) 결과 CSV 저장
 # =====================================================================
-out_csv = os.path.join(base_dir, "chungbuk_clusters_all_area_ratio_softmax_pop_k4.csv")
+out_csv = os.path.join(base_dir, "clusters_featureall_k4_softmax.csv")
 
 save_cols = (
     [col_year, col_region] +
@@ -332,3 +332,4 @@ df[save_cols].to_csv(out_csv, index=False, encoding="cp949")
 print("군집 + Softmax + 전체 면적비율 + 인구밀도 결과 CSV 저장:", out_csv)
 
 print("\n=== 군집 분석(KMeans k=4 + PCA + Softmax, chungbuk_data_2015~2024, 모든 면적 비율 + 인구밀도) 완료 ===")
+
