@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Nov 28 03:29:57 2025
-
-@author: bigbell
-"""
-
-# -*- coding: utf-8 -*-
-"""
 충청북도 토지이용 유형 분류 (PCA + KMeans, 2015~2025)
  - 입력 1: chungbuk_landuse_composition_2015_2025_detail.csv
  - 입력 2: chungbuk_population.xlsx
@@ -16,7 +9,6 @@ Created on Fri Nov 28 03:29:57 2025
     1) 임야/농경지/대지/공장용지 비율
     2) 인구밀도 (인구 / 전체면적[km²])
     3) 도로율 (도로면적 / 전체면적)
-   → 이 6개 피처를 모두 사용하여 KMeans 수행 (k=4)
 """
 
 import os
@@ -33,7 +25,7 @@ plt.rcParams['font.family'] = 'Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] = False
 
 # ===== 1) 경로 및 파일 설정 =====
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025_detail.csv")
 pop_xlsx_path   = os.path.join(base_dir, "chungbuk_population.xlsx")
 road_xlsx_path  = os.path.join(base_dir, "chungbuk_road_ratio_2015_2025.xlsx")
@@ -239,7 +231,7 @@ print(df_2025[[
 # ===== 13) 결과 CSV 저장 =====
 out_csv_path = os.path.join(
     base_dir,
-    "chungbuk_landuse_clusters_kmeans_2015_2025_k4_softmax.csv"
+    "clusters_feature6_k4_softmax.csv"
 )
 df.to_csv(out_csv_path, index=False, encoding="cp949")
 print("\n저장 완료: ", out_csv_path)
@@ -283,7 +275,7 @@ plt.tight_layout()
 
 out_png_all = os.path.join(
     base_dir,
-    "pca_kmeans_clusters_2015_2025_k4_with_2025_labels.png"
+    "clusters_feature6_k4.png"
 )
 plt.savefig(out_png_all, dpi=200)
 plt.close()
@@ -291,3 +283,4 @@ plt.close()
 print("전체 연도 PCA 클러스터 그림 저장:", out_png_all)
 
 print("\n=== 전체 작업 완료 (k=4, 도시형/산업형/산림형/농업형 + Softmax 버전) ===")
+
