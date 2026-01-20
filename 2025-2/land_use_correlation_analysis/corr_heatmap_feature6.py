@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Nov 25 23:05:43 2025
-
-@author: bigbell
-"""
-
-# -*- coding: utf-8 -*-
-"""
 충북 토지이용 기초 통계 분석
  - 데이터: chungbuk_landuse_composition_2015_2025_detail.csv
  - 1) 용도별 평균/중앙값 (면적 + 비율)
@@ -260,6 +253,7 @@ plt.close()
 print("Heatmap 이미지 저장:", corr_img)
 
 print("\n=== 도로율 + 인구밀도 상관분석 완료 ===")
+
 
 
 
