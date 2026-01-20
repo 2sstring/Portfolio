@@ -25,7 +25,7 @@ plt.rcParams['font.family'] = 'Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] = False
 
 # ===== 1) 데이터 로드 =====
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025_detail.csv")
 
 df = pd.read_csv(detail_csv_path, encoding="cp949")
@@ -219,3 +219,4 @@ for year in years:
     print(f"[C] {year}년 산점도 저장:", outfile_C)
 
 print("\n=== 상관 산점도 생성 완료: B(전체 1장) + C(연도별 여러 장) ===")
+
