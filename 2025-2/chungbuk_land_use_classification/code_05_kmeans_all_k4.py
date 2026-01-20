@@ -1,0 +1,246 @@
+# -*- coding: utf-8 -*-
+"""
+충북 토지이용 군집 분석 (KMeans + PCA + Softmax 확률)
+ - 대상: 2015~2025년 전체, (연도, 행정구역) 단위
+ - 특징: 임야/농경지/대지/공장용지 비율 (4차원)
+ - 군집: KMeans(k=4)
+ - 시각화: PCA(2D) + 클러스터 색상
+ - 추가: 각 유형(도시형, 산업형, 농업형, 산림형)에 대한 softmax 확률 계산
+"""
+
+import os
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+from sklearn.decomposition import PCA
+
+# ===== 한글 폰트 설정 =====
+plt.rcParams['font.family'] = 'Malgun Gothic'
+plt.rcParams['axes.unicode_minus'] = False
+
+# (선택) KMeans 메모리 경고 완화
+os.environ["OMP_NUM_THREADS"] = "1"
+
+# ===== 1) 데이터 로드 =====
+base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025_detail.csv")
+
+df = pd.read_csv(detail_csv_path, encoding="cp949")
+
+# '충청북도 합계' 제외
+df = df[df["토지소재명"] != "충청북도 합계"].copy().reset_index(drop=True)
+
+col_region  = "토지소재명"
+col_year    = "year"
+col_forest  = "임야 면적(㎡)"
+col_agri    = "농경지 면적(㎡)"
+col_dae     = "대 면적(㎡)"
+col_factory = "공장용지 면적(㎡)"
+
+df[col_year] = df[col_year].astype(int)
+
+# ===== 2) 2015~2025 전체에 대해 비율 계산 =====
+
+col_total = "합계 면적(㎡)"
+
+denom = df[col_total]  # 지역·연도별 전체 면적
+# denom = df[col_forest] + df[col_agri] + df[col_dae] + df[col_factory]
+
+df["임야 비율"]      = df[col_forest]  / denom
+df["농경지 비율"]    = df[col_agri]    / denom
+df["대지 비율"]      = df[col_dae]     / denom
+df["공장용지 비율"]  = df[col_factory] / denom
+
+print("전체 행 수:", len(df))
+print(df[[col_year, col_region, "임야 비율", "농경지 비율", "대지 비율", "공장용지 비율"]].head())
+
+# ===== 3) KMeans 군집 (k=4) – 2015~2025 전체 =====
+feature_cols = ["임야 비율", "농경지 비율", "대지 비율", "공장용지 비율"]
+X = df[feature_cols].values
+
+# 스케일링
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# KMeans (k=4)
+kmeans = KMeans(n_clusters=4, random_state=0, n_init=50)
+clusters = kmeans.fit_predict(X_scaled)
+
+df["cluster"] = clusters
+
+# 클러스터 중심(centroid)을 원래 비율 스케일로 복원
+centers_scaled = kmeans.cluster_centers_
+centers = scaler.inverse_transform(centers_scaled)
+
+centers_df = pd.DataFrame(centers, columns=feature_cols)
+centers_df["cluster"] = range(4)
+
+# 참고용 U, G 지표 계산 (도시/산업 합, 농업/산림 합)
+centers_df["U_도시산업"] = centers_df["대지 비율"] + centers_df["공장용지 비율"]
+centers_df["G_농업산림"] = centers_df["임야 비율"] + centers_df["농경지 비율"]
+
+print("\n=== (2015~2025 전체 기준) 클러스터별 평균 비율 ===")
+print(centers_df)
+
+# ===== 4) 클러스터 라벨링 (도시형, 산업형, 농업형, 산림형) =====
+# - 각 클러스터 중심의 비율을 기반으로 자동 라벨링
+#   1) 산업형 : 공장용지 비율이 가장 큰 클러스터
+#   2) 도시형 : 아직 남은 클러스터 중 대지 비율이 가장 큰 클러스터
+#   3) 농업형 : 아직 남은 클러스터 중 농경지 비율이 가장 큰 클러스터
+#   4) 산림형 : 나머지 1개 클러스터
+
+available_idx = set(centers_df.index)
+
+# 1) 산업형 (공장용지 비율 최대)
+idx_ind = centers_df.loc[list(available_idx), "공장용지 비율"].idxmax()
+cluster_ind = int(centers_df.loc[idx_ind, "cluster"])
+available_idx.remove(idx_ind)
+
+# 2) 도시형 (대지 비율 최대)
+idx_city = centers_df.loc[list(available_idx), "대지 비율"].idxmax()
+cluster_city = int(centers_df.loc[idx_city, "cluster"])
+available_idx.remove(idx_city)
+
+# 3) 농업형 (농경지 비율 최대)
+idx_agri = centers_df.loc[list(available_idx), "농경지 비율"].idxmax()
+cluster_agri = int(centers_df.loc[idx_agri, "cluster"])
+available_idx.remove(idx_agri)
+
+# 4) 산림형 (남은 1개)
+idx_forest = list(available_idx)[0]
+cluster_forest = int(centers_df.loc[idx_forest, "cluster"])
+
+cluster_label_map = {
+    cluster_city:   "도시형",
+    cluster_ind:    "산업형",
+    cluster_agri:   "농업형",
+    cluster_forest: "산림형",
+}
+
+print("\n클러스터 라벨 매핑:", cluster_label_map)
+
+df["유형"] = df["cluster"].map(cluster_label_map)
+
+# =====================================================================
+# 4-1) Softmax 기반 유형별 확률 계산
+#  - KMeans의 각 포인트-센터 거리(dist)를 이용해서
+#    softmax( -거리 ) 로 4개 클러스터에 대한 확률을 계산
+#  - 그 후, cluster→유형 매핑을 이용해
+#    P_도시형, P_산업형, P_농업형, P_산림형 열 추가
+# =====================================================================
+
+# (1) 각 샘플의 클러스터까지의 거리 행렬 (N x 4)
+distances = kmeans.transform(X_scaled)   # 유클리드 거리
+
+# (2) softmax 계산 함수
+def softmax_neg_dist(d):
+    # d: shape (4,) – 각 클러스터까지의 거리
+    # score = -d  → 가까울수록 score가 커짐
+    s = -d
+    s = s - np.max(s)   # overflow 방지용
+    exp_s = np.exp(s)
+    return exp_s / np.sum(exp_s)
+
+# (3) 모든 샘플에 대해 softmax 확률 계산
+probs = np.apply_along_axis(softmax_neg_dist, 1, distances)  # shape (N, 4)
+
+# (4) cluster 인덱스 → 유형 이름 역매핑
+type_to_cluster = {v: k for k, v in cluster_label_map.items()}
+
+idx_city_c   = type_to_cluster["도시형"]
+idx_ind_c    = type_to_cluster["산업형"]
+idx_agri_c   = type_to_cluster["농업형"]
+idx_forest_c = type_to_cluster["산림형"]
+
+# (5) 유형별 softmax 확률 컬럼 추가 (0~1 사이 값)
+df["P_도시형"]   = probs[:, idx_city_c]
+df["P_산업형"]   = probs[:, idx_ind_c]
+df["P_농업형"]   = probs[:, idx_agri_c]
+df["P_산림형"]   = probs[:, idx_forest_c]
+
+# =====================================================================
+# 5) PCA 2D 시각화 (2015~2025 전체, 라벨은 2025년만)
+# =====================================================================
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_scaled)
+
+df["PC1"] = X_pca[:, 0]
+df["PC2"] = X_pca[:, 1]
+
+plt.figure(figsize=(9, 7))
+
+type_colors = {
+    "도시형": "#EA9358",   # 주황/도시
+    "산업형": "#8FA1BB",   # 회색/산업
+    "농업형": "#E6C950",   # 노랑/농업
+    "산림형": "#75CD97",   # 초록/산림
+}
+
+for t, sub in df.groupby("유형"):
+    # 점은 모든 연도(2015~2025)를 그림
+    plt.scatter(
+        sub["PC1"],
+        sub["PC2"],
+        label=t,
+        color=type_colors.get(t, "gray"),
+        alpha=0.9,
+        s=60,
+    )
+    # 🔹 텍스트는 2025년 데이터에 대해서만, 연도 없이 지역명만 표시
+    sub_2025 = sub[sub[col_year] == 2025]
+    for _, row in sub_2025.iterrows():
+        label_txt = row[col_region]
+        plt.text(
+            row["PC1"] + 0.02,
+            row["PC2"] + 0.02,
+            label_txt,
+            fontsize=8
+        )
+
+plt.axhline(0, color="gray", linewidth=0.5)
+plt.axvline(0, color="gray", linewidth=0.5)
+plt.xlabel("PC1")
+plt.ylabel("PC2")
+plt.title("충북 토지이용 군집 (KMeans, k=4, 2015~2025년, 임야/농경지/대지/공장 비율)")
+plt.legend(title="지역 유형")
+plt.tight_layout()
+
+pca_outfile = os.path.join(base_dir, "cluster_pca_2015_2025_k4.png")
+plt.savefig(pca_outfile, dpi=200)
+plt.close()
+
+print("\nPCA 시각화 이미지 저장:", pca_outfile)
+
+# =====================================================================
+# 6) 결과 CSV 저장 (모든 연도 + softmax 확률)
+# =====================================================================
+out_csv = os.path.join(base_dir, "chungbuk_clusters_2015_2025_softmax_k4.csv")
+save_cols = [
+    col_year, col_region,
+    col_forest, col_agri, col_dae, col_factory,
+    "임야 비율", "농경지 비율", "대지 비율", "공장용지 비율",
+    "cluster", "유형",
+    "P_도시형", "P_산업형", "P_농업형", "P_산림형",
+    "PC1", "PC2",
+]
+df[save_cols].to_csv(out_csv, index=False, encoding="cp949")
+print("군집 + Softmax 결과 CSV 저장:", out_csv)
+
+print("\n=== 군집 분석(KMeans(k=4)+PCA+Softmax, 2015~2025 전체) 완료 ===")
+
+# =====================================================================
+# 7) PCA 로딩 계수 및 설명 분산 비율 출력
+# =====================================================================
+loadings = pd.DataFrame(
+    pca.components_,
+    columns=feature_cols,
+    index=["PC1", "PC2"]
+)
+print("\n=== PCA 성분 계수(Loadings) ===")
+print(loadings)
+
+print("\n=== 각 PC가 설명하는 분산 비율 ===")
+print(pd.Series(pca.explained_variance_ratio_, index=["PC1", "PC2"]))
