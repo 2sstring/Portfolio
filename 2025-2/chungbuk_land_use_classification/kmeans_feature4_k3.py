@@ -26,7 +26,7 @@ os.environ["OMP_NUM_THREADS"] = "1"
 
 # ===== 1) 데이터 로드 =====
 base_dir = r"data"
-detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025.csv")
+detail_csv_path = os.path.join(base_dir, "chungbuk_landuse_composition_2015_2025_detail.csv")
 
 df = pd.read_csv(detail_csv_path, encoding="cp949")
 
@@ -225,6 +225,7 @@ print(loadings)
 
 print("\n=== 각 PC가 설명하는 분산 비율 ===")
 print(pd.Series(pca.explained_variance_ratio_, index=["PC1", "PC2"]))
+
 
 
 
