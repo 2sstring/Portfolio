@@ -1,15 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Nov 29 00:17:57 2025
-
-@author: bigbell
-"""
-
-# -*- coding: utf-8 -*-
-"""
 충북 토지이용 군집 분석 (KMeans + PCA + Softmax 확률)
- - 대상: chungbuk_data_2015~2024 (연도별 CSV, 연말 기준)
- - 특징: 지정한 19개 '... 면적(㎡)' 비율 + 인구밀도 (도로율은 제외)
+ - 대상: chungbuk_data_2015~2025 (연도별 CSV, 연말 기준)
+ - 특징: 지정한 19개 '... 면적(㎡)' 비율 + 인구밀도
  - 군집: KMeans(k=3)
  - 시각화: PCA(2D) + 클러스터 색상
  - 추가: 각 유형(도시/산업형, 농업/산림형, 균형형)에 대한 softmax 확률 계산
@@ -33,7 +26,7 @@ plt.rcParams['axes.unicode_minus'] = False
 os.environ["OMP_NUM_THREADS"] = "1"
 
 # ===== 0) 경로 설정 =====
-base_dir = r"C:/Users/leebi/OneDrive/바탕 화면/team_project"
+base_dir = r"data"
 
 # 연도별 토지이용 원본 CSV
 landuse_pattern = os.path.join(base_dir, "chungbuk_data_*.csv")
@@ -314,7 +307,7 @@ plt.title(f"충북 토지이용 군집 (KMeans, {df[col_year].min()}~{df[col_yea
 plt.legend(title="지역 유형")
 plt.tight_layout()
 
-pca_outfile = os.path.join(base_dir, "cluster_pca_selected19_area_ratio_pop.png")
+pca_outfile = os.path.join(base_dir, "clusters_feature20_k3.png")
 plt.savefig(pca_outfile, dpi=200)
 plt.close()
 
@@ -323,7 +316,7 @@ print("\nPCA 시각화 이미지 저장:", pca_outfile)
 # =====================================================================
 # 9) 결과 CSV 저장
 # =====================================================================
-out_csv = os.path.join(base_dir, "chungbuk_clusters_selected19_area_ratio_softmax_pop.csv")
+out_csv = os.path.join(base_dir, "clusters_feature20_k3.csv")
 
 save_cols = (
     [col_year, col_region] +
@@ -340,3 +333,4 @@ df[save_cols].to_csv(out_csv, index=False, encoding="cp949")
 print("군집 + Softmax + 선택 19개 면적비율 + 인구밀도 결과 CSV 저장:", out_csv)
 
 print("\n=== 군집 분석(KMeans+PCA+Softmax, 선택 19개 면적 변수 + 인구밀도) 완료 ===")
+
