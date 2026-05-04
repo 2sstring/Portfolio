@@ -1,0 +1,2 @@
+Best_learning_rate,Best_max_depth,Best_n_estimators,Best_subsample,GridSearch_CV_RMSE,Test_MSE,Test_RMSE,Test_MAE,Test_R2
+0.05,5,150,0.8,422.1181010233133,165222.44566037811,406.4756396887495,261.2475239850106,0.8191253428439007
