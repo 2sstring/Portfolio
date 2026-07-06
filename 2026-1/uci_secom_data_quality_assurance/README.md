@@ -21,7 +21,7 @@
 ```text
 01-uci-secom-data-quality-assurance/
 ├── README.md
-├── hw01_uci_secom.py
+├── uci_secom.py
 └── uci-secom.csv        # GitHub 업로드 제외
 ```
 
