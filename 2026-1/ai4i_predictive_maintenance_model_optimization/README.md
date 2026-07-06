@@ -105,8 +105,6 @@ models/
 └── sensor_scaler_xgb.pkl
 ```
 
-해당 파일들은 학습 결과물이므로 GitHub에는 업로드하지 않는 것을 권장합니다.
-
 ## 사용 기술
 
 * Python
