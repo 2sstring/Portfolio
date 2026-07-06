@@ -22,7 +22,7 @@
 ```text
 02-solar-power-data-quality-assurance/
 ├── README.md
-├── hw01_solar_power.py
+├── solar_power.py
 └── 01. 전국 태양광 발전량 예측값 학습데이터.csv     # GitHub 업로드 제외
 ```
 
