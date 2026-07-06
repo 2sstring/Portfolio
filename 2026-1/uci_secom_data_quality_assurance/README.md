@@ -71,8 +71,6 @@ python hw01_uci_secom.py
 uci-secom_cleaned_until_consistency.csv
 ```
 
-해당 파일은 정제된 데이터셋이므로 GitHub에는 업로드하지 않는 것을 권장합니다.
-
 ## 사용 기술
 
 * Python
