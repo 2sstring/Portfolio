@@ -1,0 +1,28 @@
+{
+  "source": "C:\\Users\\leebi\\Downloads\\Portfolio-main\\Portfolio-main\\2026-2\\pv_power_anomaly_detection\\한국동서발전_지역별\\PV_Dataset_충북.csv",
+  "demo_data": false,
+  "raw_rows": 43416,
+  "excluded_invalid_or_duplicate_rows": 0,
+  "rows_used": 43416,
+  "suspicious_power_over_capacity_rows": 0,
+  "remaining_time_gaps": 9,
+  "daylight_rows": 20630,
+  "eligible_rows": 11411,
+  "irradiance_threshold": 0.96,
+  "irradiance_edges": [
+    0.005,
+    0.27,
+    0.61,
+    1.13,
+    1.72,
+    2.39,
+    3.92
+  ],
+  "reference_group_min_count": 15,
+  "reference_levels": {
+    "NaN": 22786,
+    "season_hour_irr": 20482,
+    "season_irr": 148
+  },
+  "note": "기존 전처리를 반복하지 않음. 전체 관측치의 참고 분포에서 후보를 찾는 기술적 탐색이며 실제 고장 판정 아님."
+}

@@ -1,0 +1,18 @@
+{
+  "input": "C:\\Users\\leebi\\Downloads\\Portfolio-main\\Portfolio-main\\2026-2\\pv_power_anomaly_detection\\results\\pattern_data.csv",
+  "number_of_events": 19,
+  "number_of_flagged_unique_rows": 45,
+  "parameters": {
+    "output_dir": "C:\\Users\\leebi\\Downloads\\Portfolio-main\\Portfolio-main\\2026-2\\pv_power_anomaly_detection\\results",
+    "input": "C:\\Users\\leebi\\Downloads\\Portfolio-main\\Portfolio-main\\2026-2\\pv_power_anomaly_detection\\results\\pattern_data.csv",
+    "low_output_ratio": 0.4,
+    "low_min_hours": 2,
+    "flat_min_hours": 4,
+    "flat_tolerance": 0.003,
+    "flat_irr_variation": 0.22,
+    "jump_min": 0.15,
+    "jump_relative_min": 0.5,
+    "irr_relative_max": 0.17
+  },
+  "warning": "비지도 규칙 탐지 후보. 실제 설비 고장, 성능 저하를 확정할 수 없습니다. 일사량-발전량 관계는 시간대/계절/설비운전/출력제한의 영향을 받습니다."
+}

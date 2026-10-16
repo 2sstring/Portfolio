@@ -1,0 +1,20 @@
+﻿event_id,anomaly_type,start_time,end_time,duration_hours,sample_count,severity,description
+EVT-00001,low_output_relative_to_reference,2020-02-17 12:00:00,2020-02-17 13:00:00,2,2,review,정규화발전량 <= 기준 중앙값의 40%; 절대 차이 >= 0.07; 연속 발생
+EVT-00002,low_output_relative_to_reference,2020-02-17 15:00:00,2020-02-17 16:00:00,2,2,review,정규화발전량 <= 기준 중앙값의 40%; 절대 차이 >= 0.07; 연속 발생
+EVT-00003,low_output_relative_to_reference,2020-09-06 13:00:00,2020-09-06 14:00:00,2,2,review,정규화발전량 <= 기준 중앙값의 40%; 절대 차이 >= 0.07; 연속 발생
+EVT-00004,low_output_relative_to_reference,2021-07-15 14:00:00,2021-07-15 15:00:00,2,2,review,정규화발전량 <= 기준 중앙값의 40%; 절대 차이 >= 0.07; 연속 발생
+EVT-00005,low_output_relative_to_reference,2022-02-01 12:00:00,2022-02-01 14:00:00,3,3,review,정규화발전량 <= 기준 중앙값의 40%; 절대 차이 >= 0.07; 연속 발생
+EVT-00006,low_output_relative_to_reference,2022-10-04 15:00:00,2022-10-04 16:00:00,2,2,review,정규화발전량 <= 기준 중앙값의 40%; 절대 차이 >= 0.07; 연속 발생
+EVT-00007,low_output_relative_to_reference,2022-12-14 10:00:00,2022-12-14 15:00:00,6,6,review,정규화발전량 <= 기준 중앙값의 40%; 절대 차이 >= 0.07; 연속 발생
+EVT-00008,low_output_relative_to_reference,2022-12-15 11:00:00,2022-12-15 13:00:00,3,3,review,정규화발전량 <= 기준 중앙값의 40%; 절대 차이 >= 0.07; 연속 발생
+EVT-00009,low_output_relative_to_reference,2022-12-16 11:00:00,2022-12-16 14:00:00,4,4,review,정규화발전량 <= 기준 중앙값의 40%; 절대 차이 >= 0.07; 연속 발생
+EVT-00010,low_output_relative_to_reference,2022-12-22 11:00:00,2022-12-22 12:00:00,2,2,review,정규화발전량 <= 기준 중앙값의 40%; 절대 차이 >= 0.07; 연속 발생
+EVT-00011,low_output_relative_to_reference,2023-12-17 11:00:00,2023-12-17 12:00:00,2,2,review,정규화발전량 <= 기준 중앙값의 40%; 절대 차이 >= 0.07; 연속 발생
+EVT-00012,low_output_relative_to_reference,2023-12-18 11:00:00,2023-12-18 13:00:00,3,3,review,정규화발전량 <= 기준 중앙값의 40%; 절대 차이 >= 0.07; 연속 발생
+EVT-00013,flat_output_with_variable_irradiance,2020-07-15 12:00:00,2020-07-15 15:00:00,4,4,review,4시간 출력 거의 동일; 일사량 변동비 94.0%
+EVT-00014,flat_output_with_variable_irradiance,2023-03-15 09:00:00,2023-03-15 12:00:00,4,4,review,4시간 출력 거의 동일; 일사량 변동비 50.2%
+EVT-00015,abrupt_output_change,2020-07-18 14:00:00,2020-07-18 14:00:00,1,1,review,직전 시간 대비 정규화발전량 변화 0.158; 일사량 변화비 9.2%
+EVT-00016,abrupt_output_change,2020-10-07 16:00:00,2020-10-07 16:00:00,1,1,review,직전 시간 대비 정규화발전량 변화 0.193; 일사량 변화비 2.3%
+EVT-00017,abrupt_output_change,2021-07-15 14:00:00,2021-07-15 14:00:00,1,1,review,직전 시간 대비 정규화발전량 변화 0.214; 일사량 변화비 11.5%
+EVT-00018,abrupt_output_change,2022-10-10 11:00:00,2022-10-10 11:00:00,1,1,review,직전 시간 대비 정규화발전량 변화 0.166; 일사량 변화비 5.6%
+EVT-00019,abrupt_output_change,2024-11-14 14:00:00,2024-11-14 14:00:00,1,1,review,직전 시간 대비 정규화발전량 변화 0.164; 일사량 변화비 0.6%

@@ -1,0 +1,4 @@
+﻿anomaly_type,event_count,flagged_hours
+abrupt_output_change,5,5
+flat_output_with_variable_irradiance,2,8
+low_output_relative_to_reference,12,33
