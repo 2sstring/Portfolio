@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Step 1: Build irradiance/season/hour reference patterns (no ML training).
 
-Input: data/PV_Dataset_충북.csv (02_region_split_v1.py output).
+Input: 한국동서발전_지역별/PV_Dataset_충북.csv (02_region_split_v1.py output).
 Outputs: results/pattern_data.csv, reference_patterns.csv, pattern_summary.json
 Run demo: python 01_pv_pattern_analysis.py --demo --output-dir results_demo
 """
@@ -64,7 +64,7 @@ def group_reference(df: pd.DataFrame, keys: list[str], level: str, min_n: int) -
 
 def main() -> None:
     p = argparse.ArgumentParser(description='일사량/계절/시간대별 태양광 발전 기준 패턴 계산')
-    p.add_argument('--input', type=Path, default=ROOT / 'data' / 'PV_Dataset_충북.csv')
+    p.add_argument('--input', type=Path, default=ROOT / '한국동서발전_지역별' / 'PV_Dataset_충북.csv')
     p.add_argument('--output-dir', type=Path, default=ROOT / 'results')
     p.add_argument('--demo', action='store_true', help='실제 자료 대신 인공 예제 생성 후 분석')
     p.add_argument('--bins', type=int, default=6, help='일사량 분위 구간 수')
@@ -75,7 +75,7 @@ def main() -> None:
     if not 2 <= args.bins <= 20 or args.min_reference_samples < 5 or not 0 < args.analysis_irr_quantile < 1:
         p.error('--bins, --min-reference-samples, --analysis-irr-quantile 설정을 확인하세요.')
 
-    source = ROOT / 'data' / 'demo_PV_Dataset_충북.csv' if args.demo else args.input
+    source = ROOT / '한국동서발전_지역별' / 'demo_PV_Dataset_충북.csv' if args.demo else args.input
     source = source.resolve()
     out = args.output_dir.resolve()
     out.mkdir(parents=True, exist_ok=True)
@@ -83,7 +83,7 @@ def main() -> None:
         make_demo_data(source)
     if not source.is_file():
         raise FileNotFoundError(f'데이터 파일을 찾을 수 없습니다: {source}\n'
-                                '02번 지역 분리 출력인 PV_Dataset_충북.csv를 data/ 폴더에 복사하세요.')
+                                '02번 지역 분리 출력인 PV_Dataset_충북.csv를 한국동서발전_지역별/ 폴더에 복사하세요.')
 
     df = pd.read_csv(source, encoding='utf-8-sig', low_memory=False)
     missing = [c for c in REQUIRED if c not in df]
